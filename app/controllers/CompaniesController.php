@@ -57,7 +57,7 @@ class CompaniesController extends ControllerBase
         ]);
 
         $this->view->setVars([
-            'page'      => $paginator->getPaginate(),
+            'page'      => $paginator->paginate(),
             'companies' => $companies,
         ]);
     }

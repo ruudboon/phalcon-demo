@@ -7,7 +7,7 @@ use Phalcon\Mvc\Model;
 /**
  * ProductTypes Model
  *
- * @method static ProductTypes findFirstById(int $id)
+ * @method static ProductTypes findFirstById($id)
  */
 class ProductTypes extends Model
 {

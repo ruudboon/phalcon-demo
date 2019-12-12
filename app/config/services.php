@@ -6,7 +6,7 @@ use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Volt;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Dispatcher;
-use Phalcon\Mvc\Url as UrlProvider;
+use Phalcon\Url as UrlProvider;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaData;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
@@ -146,6 +146,12 @@ $di->set('session', function () {
 });
 
 /**
+ * Start the session the first time some component request the session service
+ */
+$di->set('sessionBag', \Phalcon\Session\Bag::class);
+
+
+/**
  * Add routing capabilities
  */
 $di->setShared('router', function () use ($eventsManager) {
@@ -156,7 +162,8 @@ $di->setShared('router', function () use ($eventsManager) {
  * Register the flash service with custom CSS classes
  */
 $di->set('flash', function () {
-    return new FlashSession(
+    $flash =  new FlashSession();
+    $flash->setCssClasses(
         [
             'error'   => 'alert alert-danger',
             'success' => 'alert alert-success',
@@ -164,6 +171,7 @@ $di->set('flash', function () {
             'warning' => 'alert alert-warning'
         ]
     );
+    return $flash;
 });
 
 /**

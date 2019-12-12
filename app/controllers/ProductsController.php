@@ -59,7 +59,7 @@ class ProductsController extends ControllerBase
             'page'  => $numberPage
         ]);
 
-        $this->view->setVar('page', $paginator->getPaginate());
+        $this->view->setVar('page', $paginator->paginate());
     }
 
     /**

@@ -2,9 +2,9 @@
 
 namespace PhalconDemo\Plugins;
 
+use Phalcon\Di\Injectable;
 use Phalcon\Dispatcher;
 use Phalcon\Events\Event;
-use Phalcon\Mvc\User\Plugin;
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 use Phalcon\Mvc\Dispatcher\Exception as DispatcherException;
 
@@ -13,7 +13,7 @@ use Phalcon\Mvc\Dispatcher\Exception as DispatcherException;
  *
  * Handles not-found controller/actions
  */
-class NotFoundPlugin extends Plugin
+class NotFoundPlugin extends Injectable
 {
     /**
      * This action is executed before execute any action in the application
